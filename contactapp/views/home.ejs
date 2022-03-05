@@ -1,0 +1,13 @@
+<h1 class="mb-3">Home Page</h1>
+
+<% if (mahasiswa.length < 1) { %>
+<h3>Data mahasiswa kosong!</h3>
+<% } %>
+
+<h3>Data Mahasiswa : </h3>
+<% mahasiswa.forEach(mhs => { %>
+<ul class="list-group my-2 col-lg-6">
+  <li class="list-group-item">Nama : <%= mhs.nama %></li>
+  <li class="list-group-item">Email : <%= mhs.email %></li>
+</ul>
+<% }) %>
