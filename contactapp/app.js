@@ -1,6 +1,16 @@
 const express = require('express');
 const ejsLayout = require('express-ejs-layouts')
-const { loadContact, detailContact } = require('./utils/contacts')
+const {
+  loadContact,
+  detailContact,
+  addContact,
+  cekDuplikasi
+} = require('./utils/contacts')
+const {
+  body,
+  validationResult,
+  check
+} = require('express-validator');
 const server = express()
 const port = 3004
 
@@ -11,6 +21,8 @@ server.set('view engine', 'ejs')
 server.use(ejsLayout)
 // middleware
 server.use(express.static('public'))
+// encode req.body
+server.use(express.urlencoded({ extended: true }))
 
 server.use((req, res, next) => {
   console.log('Time : ', Date.now())
@@ -57,6 +69,51 @@ server.get('/contact', (req, res) => {
     contacts,
   })
 })
+
+server.get('/contact/add', (req, res) => {
+  res.render('add', {
+    title: 'Add',
+    layout: './layout/layout'
+  })
+})
+
+server.post('/contact',
+  // sesuai name yang di add.ejs
+  check('email', 'Email not valid').isEmail(),
+  check('phone', 'Phone not valid in Indonesia').isMobilePhone('id-ID'),
+  check('nama', 'Nama minimal 12 letter').isLength({ min: 3 }),
+  body('nama').custom(value => {
+    const duplikasi = cekDuplikasi(value);
+    if (duplikasi) {
+      throw new Error('Nama sudah terdaftar!');
+    }
+    return true;
+  }),
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      // return res.status(400).json({ errors: errors.array() });
+
+      res.render('add', {
+        title: 'Add',
+        layout: './layout/layout',
+        errors: errors.array()
+      })
+    } else {
+      addContact(req.body);
+      // res.redirect('/contact') // get response
+
+      const contacts = loadContact()
+
+      res.render('contact', {
+        title: 'Contact',
+        layout: './layout/layout',
+        contacts,
+        success: `${req.body.nama} baru saja ditambahkan!`,
+      })
+    }
+  }
+)
 
 server.get('/contact/:nama', (req, res) => {
 

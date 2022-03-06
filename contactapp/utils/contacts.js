@@ -1,13 +1,13 @@
 const fs = require('fs');
 
 // create folder
-const folData = './data'
+const folData = 'data'
 if (!fs.existsSync(folData)) {
   fs.mkdirSync(folData)
 }
 
 // create file
-const fileCon = './data/contacts.json'
+const fileCon = 'data/contacts.json'
 if (!fs.existsSync(fileCon)) {
   fs.writeFileSync(fileCon, '[]', 'utf-8')
 }
@@ -27,5 +27,24 @@ const detailContact = (nama) => {
   return contact;
 }
 
+// nambah data json 
+const dataJson = (contacts) => {
+  fs.writeFileSync(fileCon, JSON.stringify(contacts))
+}
 
-module.exports = { loadContact, detailContact }
+// nambah contact
+const addContact = (contact) => {
+  const contacts = loadContact()
+  contacts.unshift(contact)
+  dataJson(contacts)
+}
+
+// cek duplikasi
+const cekDuplikasi = (nama) => {
+  const contacts = loadContact()
+  const duplikasi = contacts.find(contact => contact.nama.toLowerCase() === nama.toLowerCase())
+
+  return duplikasi
+}
+
+module.exports = { loadContact, detailContact, addContact, cekDuplikasi }
