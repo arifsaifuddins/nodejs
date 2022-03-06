@@ -4,4 +4,3 @@ const say = (nama) => {
 }
 
 const usia = 22
-usia
