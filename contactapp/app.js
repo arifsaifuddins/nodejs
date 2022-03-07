@@ -130,12 +130,10 @@ server.post('/contact',
       addContact(req.body);
       // res.redirect('/contact') // get response
 
-      const contacts = loadContact()
-
       res.render('contact', {
         title: 'Contact',
         layout: './layout/layout',
-        contacts,
+        contacts: loadContact(),
         success: `${req.body.nama} baru saja ditambahkan!`,
       })
     }
@@ -199,13 +197,6 @@ server.post('/contact/update',
       // flash
       req.flash('edit', `${req.body.nama} berhasil diubah!`)
       res.redirect('/contact') // get response
-
-      // res.render('contact', {
-      //   title: 'Contact',
-      //   layout: './layout/layout',
-      //   contacts: loadContact(),
-      //   edsuccess: `${req.body.nama} baru saja diubah!`,
-      // })
     }
   }
 )
