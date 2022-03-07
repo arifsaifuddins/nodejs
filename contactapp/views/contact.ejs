@@ -4,7 +4,21 @@
   <div class="col-lg-6">
     <a href="/contact/add" class="btn btn-success my-2 ">Add Contact</a>
 
-    <% if (success) { %>
+    <% if (typeof delsuccess != 'undefined' && delsuccess.length !== 0) { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <strong><%= delsuccess %></strong>
+    </div>
+    <% } %>
+
+    <% if (typeof edsuccess != 'undefined' && edsuccess.length !== 0) { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <strong><%= edsuccess %></strong>
+    </div>
+    <% } %>
+
+    <% if (typeof success != 'undefined') { %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       <strong><%= success %></strong>

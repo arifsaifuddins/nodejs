@@ -28,7 +28,7 @@ const detailContact = (nama) => {
 }
 
 // nambah data json 
-const dataJson = (contacts) => {
+const saveJson = (contacts) => {
   fs.writeFileSync(fileCon, JSON.stringify(contacts))
 }
 
@@ -36,7 +36,7 @@ const dataJson = (contacts) => {
 const addContact = (contact) => {
   const contacts = loadContact()
   contacts.unshift(contact)
-  dataJson(contacts)
+  saveJson(contacts)
 }
 
 // cek duplikasi
@@ -47,4 +47,32 @@ const cekDuplikasi = (nama) => {
   return duplikasi
 }
 
-module.exports = { loadContact, detailContact, addContact, cekDuplikasi }
+// delete
+const deleteContact = (nama) => {
+  const contacts = loadContact()
+
+  const contact = contacts.filter(contact => contact.nama.toLowerCase() !== nama.toLowerCase())
+
+  saveJson(contact)
+}
+
+// update
+const updateContact = (newContact) => {
+  const contacts = loadContact()
+
+  const contact = contacts.filter(contact => contact.nama !== newContact.old)
+
+  delete newContact.old
+  contact.unshift(newContact)
+
+  saveJson(contact)
+}
+
+module.exports = {
+  loadContact,
+  detailContact,
+  addContact,
+  cekDuplikasi,
+  deleteContact,
+  updateContact
+}
