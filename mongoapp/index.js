@@ -6,7 +6,6 @@ const port = 3004
 
 // pake ejs
 app.set('view engine', 'ejs')
-
 // pake ejs layout
 app.use(ejsLayout)
 // middleware
@@ -31,6 +30,7 @@ const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 
 // config flash
+app.use(flash())
 app.use(cookieParser('secret'))
 app.use(session({
   cookie: { maxAge: 3000 },
@@ -38,12 +38,10 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }))
-app.use(flash())
 
 // layouts
 
 // home 
-
 app.get('/', (req, res) => {
   const mahasiswa = [
     {
@@ -67,9 +65,7 @@ app.get('/', (req, res) => {
 })
 
 // contact
-
 app.get('/contact', async (req, res) => {
-
   const contacts = await MongoApp.find()
 
   res.render('contact', {
@@ -82,7 +78,6 @@ app.get('/contact', async (req, res) => {
 })
 
 // about
-
 app.get('/about', (req, res) => {
   res.render('about', {
     title: 'About',
@@ -91,7 +86,6 @@ app.get('/about', (req, res) => {
 })
 
 // add
-
 app.get('/contact/add', (req, res) => {
   res.render('add', {
     title: 'Add',
@@ -100,7 +94,6 @@ app.get('/contact/add', (req, res) => {
 })
 
 // exc add
-
 app.post('/contact',
   // sesuai name yang di add.ejs
   check('email', 'Email not valid').isEmail(),
@@ -116,16 +109,15 @@ app.post('/contact',
   }),
   async (req, res) => {
     const errors = validationResult(req);
+
     if (!errors.isEmpty()) {
       // return res.status(400).json({ errors: errors.array() });
-
       res.render('add', {
         title: 'Add',
         layout: './layout/layout',
         errors: errors.array()
       })
     } else {
-      // addContact(req.body);
       await MongoApp.insertMany(req.body)
       // res.redirect('/contact') // get response
 
@@ -140,7 +132,6 @@ app.post('/contact',
 )
 
 // delete
-
 app.get('/contact/delete/:nama', async (req, res) => {
   const contact = await MongoApp.findOne({ nama: req.params.nama })
 
@@ -158,7 +149,6 @@ app.get('/contact/delete/:nama', async (req, res) => {
 })
 
 // edit
-
 app.get('/contact/edit/:nama', async (req, res) => {
   const contact = await MongoApp.findOne({ nama: req.params.nama })
 
@@ -170,7 +160,6 @@ app.get('/contact/edit/:nama', async (req, res) => {
 })
 
 // update
-
 app.post('/contact/update',
   // sesuai name yang di add.ejs
   check('email', 'Email not valid').isEmail(),
@@ -214,7 +203,6 @@ app.post('/contact/update',
 )
 
 // detail
-
 app.get('/contact/:nama', async (req, res) => {
 
   const contact = await MongoApp.findOne({ nama: req.params.nama })
@@ -227,7 +215,6 @@ app.get('/contact/:nama', async (req, res) => {
 })
 
 // product
-
 app.get('/product', (req, res) => {
   res.render('product', {
     title: 'Product',
@@ -241,6 +228,7 @@ app.use('/', (req, res) => {
   res.send('<h1>404</h1>')
 })
 
+// listen port
 app.listen(port, () => {
   console.log(`mongoapp listening to http://127.0.0.1:${port}`)
 })
