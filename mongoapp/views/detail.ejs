@@ -1,0 +1,20 @@
+<div class="card col-lg-6">
+  <div class="card-body">
+    <% if (!contact) { %>
+    <blockquote class="blockquote">
+      <div class="alert alert-danger" role="alert">
+        <strong>Nama kosong!</strong>
+        <a href="/contact" class="text-dark">Back</a>
+      </div>
+      <% } else { %>
+      <p><%= contact.nama %></p>
+      <div class="blockquote-footer"><%= contact.email %></div>
+      <div class="blockquote-footer"><%= contact.phone %></div>
+    </blockquote>
+    <a href="/contact/edit/<%= contact.nama %>" class="btn badge bg-warning my-3">Edit</a>
+    <a href="/contact/delete/<%= contact.nama %>" class="btn badge bg-danger my-3"
+      onclick="confirm('Yakin, Ingin menghapus contact ini?')">Hapus</a><br>
+    <a href="/contact">&laquo; Kembali...</a>
+    <% } %>
+  </div>
+</div>

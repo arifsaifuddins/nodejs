@@ -1,0 +1,58 @@
+<h1 class="mb-3">Contact Page</h1>
+
+<div class="row">
+  <div class="col-lg-6">
+    <a href="/contact/add" class="btn btn-success my-2 ">Add Contact</a>
+
+    <% if (typeof delsuccess != 'undefined' && delsuccess.length !== 0) { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <strong><%= delsuccess %></strong>
+    </div>
+    <% } %>
+
+    <% if (typeof edsuccess != 'undefined' && edsuccess.length !== 0) { %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <strong><%= edsuccess %></strong>
+    </div>
+    <% } %>
+
+    <% if (typeof success != 'undefined') { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      <strong><%= success %></strong>
+    </div>
+    <% } %>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (contacts.length === 0) { %>
+        <tr>
+          <td colspan="3">
+            <div class="alert alert-dark" role="alert">
+              <strong>Contact kosong!</strong>
+            </div>
+          </td>
+        </tr>
+        <% } else { %>
+        <% contacts.forEach((contact, i) => { %>
+        <tr>
+          <td scope="row"><%= i + 1 %></td>
+          <td><%= contact.nama %></td>
+          <td>
+            <a href="/contact/<%= contact.nama %>" class="btn badge bg-secondary">Detail</a>
+          </td>
+        </tr>
+        <% }) }%>
+      </tbody>
+    </table>
+  </div>
+</div>

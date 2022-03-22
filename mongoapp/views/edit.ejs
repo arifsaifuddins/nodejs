@@ -1,0 +1,31 @@
+<h1 class="mb-3">Edit Contact Page</h1>
+
+<% if (typeof errors !== 'undefined') { %>
+<div class="alert alert-danger col-lg-6" role="alert">
+  <ul>
+    <% errors.forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %><br>
+  </ul>
+</div>
+<% } %>
+
+<form action="/contact/update" method="post">
+  <input type="hidden" name="old" value="<%= contact.old || contact.nama %>">
+  <!-- <input type="hidden" name="old" value="<%#= (contact.old) ? contact.old : contact.nama %>"> -->
+  <div class="mb-3 col-lg-6">
+    <label for="nama" class="form-label">Nama</label>
+    <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama..." required autofocus
+      value="<%= contact.nama %>">
+
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" name="email" id="email" placeholder="Email..." required
+      value="<%= contact.email %>">
+
+    <label for="phone" class="form-label">Phone</label>
+    <input type="number" class="form-control" name="phone" id="phone" placeholder="Phone..." required
+      value="<%= contact.phone %>">
+
+    <button type="submit" class="btn btn-primary text-light mt-4">Update</button>
+  </div>
+</form>
