@@ -11,9 +11,17 @@
       <div class="blockquote-footer"><%= contact.email %></div>
       <div class="blockquote-footer"><%= contact.phone %></div>
     </blockquote>
+
     <a href="/contact/edit/<%= contact.nama %>" class="btn badge bg-warning my-3">Edit</a>
-    <a href="/contact/delete/<%= contact.nama %>" class="btn badge bg-danger my-3"
-      onclick="confirm('Yakin, Ingin menghapus contact ini?')">Hapus</a><br>
+    <!-- <a href="/contact/delete/<%= contact.nama %>" class="btn badge bg-danger my-3"
+      onclick="confirm('Yakin, Ingin menghapus contact ini?')">Hapus</a><br> -->
+
+    <!-- pakai  method override-->
+    <form action="/contact?_method=DELETE" method="post" class="d-inline">
+      <input type="hidden" name="nama" value="<%= contact.nama %>">
+      <button type="submit" class="btn badge bg-danger my-3"
+        onclick="confirm('Yakin, Ingin Menghapusnya?')">Hapus</button>
+    </form><br>
     <a href="/contact">&laquo; Kembali...</a>
     <% } %>
   </div>

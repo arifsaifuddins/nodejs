@@ -4,6 +4,9 @@ const ejsLayout = require('express-ejs-layouts')
 const app = express();
 const port = 3004
 
+// method override
+const methodOverride = require('method-override')
+
 // pake ejs
 app.set('view engine', 'ejs')
 // pake ejs layout
@@ -38,6 +41,9 @@ app.use(session({
   resave: true,
   saveUninitialized: true
 }))
+
+// method
+app.use(methodOverride('_method'))
 
 // layouts
 
@@ -131,19 +137,37 @@ app.post('/contact',
   }
 )
 
-// delete
-app.get('/contact/delete/:nama', async (req, res) => {
-  const contact = await MongoApp.findOne({ nama: req.params.nama })
+// // delete
+// app.get('/contact/delete/:nama', async (req, res) => {
+//   const contact = await MongoApp.findOne({ nama: req.params.nama })
+
+//   if (!contact) {
+//     res.status(404)
+//     res.send('<h1>404</h1>')
+
+//   } else {
+//     await MongoApp.deleteOne({ nama: contact.nama })
+
+//     // flash
+//     req.flash('delete', `${contact.nama} berhasil dihapus!`)
+//     res.redirect('/contact');
+//   }
+// })
+
+// delete method override
+app.delete('/contact', async (req, res) => {
+
+  const contact = await MongoApp.findOne({ nama: req.body.nama })
 
   if (!contact) {
     res.status(404)
     res.send('<h1>404</h1>')
 
   } else {
-    await MongoApp.deleteOne({ nama: contact.nama })
+    await MongoApp.deleteOne({ nama: req.body.nama })
 
     // flash
-    req.flash('delete', `${contact.nama} berhasil dihapus!`)
+    req.flash('delete', `${req.body.nama} berhasil dihapus!`)
     res.redirect('/contact');
   }
 })
@@ -159,8 +183,51 @@ app.get('/contact/edit/:nama', async (req, res) => {
   })
 })
 
-// update
-app.post('/contact/update',
+// // update
+// app.post('/contact/update',
+//   // sesuai name yang di add.ejs
+//   check('email', 'Email not valid').isEmail(),
+//   check('phone', 'Phone not valid in Indonesia').isMobilePhone('id-ID'),
+//   check('nama', 'Nama minimal 12 letter').isLength({ min: 3 }),
+//   body('nama').custom(async (value, { req }) => {
+//     const duplikasi = await MongoApp.findOne({ nama: value })
+
+//     if (value !== req.body.old && duplikasi) {
+//       throw new Error('Nama sudah terdaftar!');
+//     }
+//     return true;
+//   }),
+//   async (req, res) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+
+//       res.render('edit', {
+//         title: 'Edit',
+//         layout: './layout/layout',
+//         errors: errors.array(),
+//         contact: req.body
+//       })
+//     } else {
+
+//       await MongoApp.updateOne(
+//         { nama: req.body.old },
+//         {
+//           $set: {
+//             nama: req.body.nama,
+//             phone: req.body.phone,
+//             email: req.body.email
+//           }
+//         });
+
+//       // flash
+//       req.flash('edit', `${req.body.nama} berhasil diubah!`)
+//       res.redirect('/contact') // get response
+//     }
+//   }
+// )
+
+// update pakai method override
+app.put('/contact',
   // sesuai name yang di add.ejs
   check('email', 'Email not valid').isEmail(),
   check('phone', 'Phone not valid in Indonesia').isMobilePhone('id-ID'),
@@ -186,7 +253,8 @@ app.post('/contact/update',
     } else {
 
       await MongoApp.updateOne(
-        { nama: req.body.old },
+        // { nama: req.body.old },
+        { _id: req.body.id },
         {
           $set: {
             nama: req.body.nama,

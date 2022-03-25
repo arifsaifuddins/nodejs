@@ -10,7 +10,11 @@
 </div>
 <% } %>
 
-<form action="/contact/update" method="post">
+<!-- <form action="/contact/update" method="post"> -->
+<!-- pakai method override -->
+<form action="/contact?_method=PUT" method="post">
+  <input type="hidden" name="id" value="<%= contact._id %>">
+
   <input type="hidden" name="old" value="<%= contact.old || contact.nama %>">
   <!-- <input type="hidden" name="old" value="<%#= (contact.old) ? contact.old : contact.nama %>"> -->
   <div class="mb-3 col-lg-6">
