@@ -10,7 +10,9 @@
   "author": "arief saifuddien",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3"
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "express-validator": "^6.14.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
