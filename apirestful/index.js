@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const authRoute = require('./routers/auth');
 const postRoute = require('./routers/post');
+const mongoose = require('mongoose');
 const app = express()
 
 // body-parser (untuk mengirim req body)
@@ -40,6 +41,12 @@ app.use('/', (req, res) => {
     status: '404'
   })
 })
+
+
+// mongo connect
+mongoose.connect('mongodb://127.0.0.1:27017/restapinode')
+  .then((res) => console.log(res.options.autoIndex))
+  .catch((err) => console.log('error : ', err))
 
 const port = 3004;
 app.listen(port, () => {
