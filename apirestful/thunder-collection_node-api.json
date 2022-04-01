@@ -1,0 +1,300 @@
+{
+  "client": "Thunder Client",
+  "collectionName": "node-api",
+  "dateExported": "2022-04-01T09:39:32.514Z",
+  "version": "1.1",
+  "folders": [],
+  "requests": [
+    {
+      "containerId": "",
+      "sortNum": 10000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "00a876cb-c741-45dc-916c-f346bb9bfea4",
+      "name": "post-product",
+      "url": "http://localhost:3004/v1/customer/postproduct",
+      "method": "POST",
+      "modified": "2022-03-31T16:10:50.851Z",
+      "created": "2022-03-29T15:08:00.823Z",
+      "_id": "b36b1f86-3338-4055-a0aa-fab6ca061a55",
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nama\": \"adi\",\n  \"harga\": \"10000\"\n}",
+        "form": []
+      },
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 20000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "00a876cb-c741-45dc-916c-f346bb9bfea4",
+      "name": "get-product",
+      "url": "http://127.0.0.1:3004/v1/customer/getproduct",
+      "method": "GET",
+      "modified": "2022-03-31T16:11:20.666Z",
+      "created": "2022-03-29T14:45:53.702Z",
+      "_id": "1375a424-63d1-4249-b2aa-e4271f668353",
+      "params": [],
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 30000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "00a876cb-c741-45dc-916c-f346bb9bfea4",
+      "name": "register",
+      "url": "http://127.0.0.1:3004/v1/auth/register",
+      "method": "POST",
+      "modified": "2022-03-29T21:40:41.523Z",
+      "created": "2022-03-29T21:38:28.511Z",
+      "_id": "2f4fdabb-7083-42ea-82c6-80f9d4b74d94",
+      "params": [],
+      "body": {
+        "type": "json",
+        "raw": "{\n  \"nama\": \"arief\",\n  \"email\": \"a@mail.com\",\n  \"password\": \"12345\"\n}",
+        "form": []
+      },
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 40000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "00a876cb-c741-45dc-916c-f346bb9bfea4",
+      "name": "post-blog",
+      "url": "http://127.0.0.1:3004/v1/blog/post",
+      "method": "POST",
+      "modified": "2022-04-01T09:37:35.714Z",
+      "created": "2022-03-29T22:00:04.907Z",
+      "_id": "4c513e0f-f1dc-4402-aa8f-8d0d8c44d43d",
+      "params": [],
+      "body": {
+        "type": "formdata",
+        "raw": "",
+        "form": [
+          {
+            "name": "title",
+            "value": "pelajaran nodejs 12"
+          },
+          {
+            "name": "body",
+            "value": "lorem ipsum dolor imper andok jokio komil ajiom nanoe"
+          }
+        ],
+        "files": [
+          {
+            "name": "image",
+            "value": "/home/arief/Downloads/Screenshot_20220320-164126_Chrome.jpg"
+          }
+        ]
+      },
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 50000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "00a876cb-c741-45dc-916c-f346bb9bfea4",
+      "name": "images",
+      "url": "localhost:3004/images/image-1648742446877-282785558-Screenshot_20220320-164126_Chrome.jpg",
+      "method": "GET",
+      "modified": "2022-03-31T21:19:32.621Z",
+      "created": "2022-03-31T21:18:39.579Z",
+      "_id": "ac45cec3-442d-4dff-9ddf-359bf7294bc5",
+      "params": [],
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 60000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "00a876cb-c741-45dc-916c-f346bb9bfea4",
+      "name": "get-post",
+      "url": "http://localhost:3004/v1/blog/post/62461d6d5b7c9fb825ac5cdf",
+      "method": "GET",
+      "modified": "2022-03-31T22:08:07.743Z",
+      "created": "2022-03-31T21:35:50.827Z",
+      "_id": "ae31c7b1-15ae-42c9-b2d1-0eec0a55e1f4",
+      "params": [],
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 70000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "00a876cb-c741-45dc-916c-f346bb9bfea4",
+      "name": "update-post",
+      "url": "http://localhost:3004/v1/blog/post/62461d6d5b7c9fb825ac5cdf",
+      "method": "PUT",
+      "modified": "2022-03-31T23:15:19.469Z",
+      "created": "2022-03-31T22:28:52.631Z",
+      "_id": "24dae83b-a585-4dfc-ad86-2a62338d0754",
+      "params": [],
+      "body": {
+        "type": "formdata",
+        "raw": "",
+        "form": [
+          {
+            "name": "title",
+            "value": "assalamualaikum warah"
+          },
+          {
+            "name": "body",
+            "value": "hdjsls hdkjd jhsjhs  komodjdjfsnmbs"
+          }
+        ],
+        "files": [
+          {
+            "name": "image",
+            "value": "/home/arief/Pictures/Screenshot from 2022-03-30 14-02-52.png"
+          }
+        ]
+      },
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 80000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "00a876cb-c741-45dc-916c-f346bb9bfea4",
+      "name": "get-all-post",
+      "url": "http://localhost:3004/v1/blog/post",
+      "method": "GET",
+      "modified": "2022-03-31T23:27:03.716Z",
+      "created": "2022-03-31T23:26:50.627Z",
+      "_id": "eec58295-6e9f-4f70-8842-36de41f9b7c7",
+      "params": [],
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 90000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "00a876cb-c741-45dc-916c-f346bb9bfea4",
+      "name": "delete-post",
+      "url": "http://localhost:3004/v1/blog/post/62463b02c8b960e5cfd459b3",
+      "method": "DELETE",
+      "modified": "2022-03-31T23:39:21.914Z",
+      "created": "2022-03-31T23:27:53.250Z",
+      "_id": "3edc41ed-b57b-443a-9dff-8e597d40d48b",
+      "params": [],
+      "tests": []
+    },
+    {
+      "containerId": "",
+      "sortNum": 100000,
+      "headers": [
+        {
+          "name": "Accept",
+          "value": "*/*"
+        },
+        {
+          "name": "User-Agent",
+          "value": "Thunder Client (https://www.thunderclient.com)"
+        }
+      ],
+      "colId": "00a876cb-c741-45dc-916c-f346bb9bfea4",
+      "name": "pagination",
+      "url": "http://localhost:3004/v1/blog/post?page=8&perpage=4",
+      "method": "GET",
+      "modified": "2022-04-01T09:38:24.686Z",
+      "created": "2022-04-01T09:28:32.232Z",
+      "_id": "5f8e1f30-38a3-4c9b-be23-5006826387f1",
+      "params": [
+        {
+          "name": "page",
+          "value": "8",
+          "isPath": false
+        },
+        {
+          "name": "perpage",
+          "value": "4",
+          "isPath": false
+        }
+      ],
+      "tests": []
+    }
+  ]
+}

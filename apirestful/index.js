@@ -1,16 +1,43 @@
 const express = require('express');
+
 const bodyParser = require('body-parser');
 const authRoute = require('./routers/auth');
 const postRoute = require('./routers/post');
+
 const mongoose = require('mongoose');
+const multer = require('multer'); // buat file upload
 const app = express()
 
-// body-parser (untuk mengirim req body)
-app.use(bodyParser.json()) // json type
+// multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'images')
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix + '-' + file.originalname)
+  }
+})
 
-// const router = require('./routers/products');
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg') {
+    cb(null, true)
+  } else {
+    cb(null, false)
+  }
+}
+
+
+// body-parser (untuk mengirim req body) // multer (untuk file)
+app.use(bodyParser.json()) // json type
+app.use(multer({ storage, fileFilter }).single('image'))
+
+// access image
+app.use('/images', express.static('images'))
+
 // //midleware localhost:3004/v1/customer/request
-// app.use('/v1/customer', router)
+const router = require('./routers/products');
+app.use('/v1/customer', router)
 // // app.use('/', router)
 
 app.use('/v1/auth', authRoute)
@@ -25,6 +52,7 @@ app.use((err, req, res, next) => {
 
   res.status(status).json({ message, data })
 })
+
 
 // unlock CORS BLOCK di browser
 app.use((req, res, next) => {

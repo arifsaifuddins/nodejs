@@ -9,6 +9,10 @@ const blogPost = mongoose.Schema({
     type: String,
     require: true
   },
+  image: {
+    type: String,
+    require: true
+  },
   author: {
     type: Object,
     require: true

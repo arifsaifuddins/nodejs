@@ -21,7 +21,7 @@ exports.postData = (req, res, next) => {
   })
 
   // res.json({
-  //   nama: 'arief',
+  //   nama: 'jeruk',
   //   harga: '10000'
   // })
 }

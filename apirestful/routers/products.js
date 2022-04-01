@@ -3,8 +3,8 @@ const { getAll, postData } = require('../controllers/products.jsx');
 
 const router = express.Router()
 
-router.get('/product', getAll)
+router.get('/getproduct', getAll)
 
-router.post('/home', postData)
+router.post('/postproduct', postData)
 
 module.exports = router
