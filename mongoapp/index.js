@@ -13,7 +13,7 @@ app.set('view engine', 'ejs')
 app.use(ejsLayout)
 // middleware
 app.use(express.static('public'))
-// encode req.body
+// encode req.body parser
 app.use(express.urlencoded({ extended: true }))
 
 // mongo
