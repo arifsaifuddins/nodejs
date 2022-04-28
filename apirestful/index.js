@@ -30,7 +30,7 @@ const fileFilter = (req, file, cb) => {
 
 // body-parser (untuk mengirim req body) // multer (untuk file)
 app.use(bodyParser.json()) // json type
-app.use(multer({ storage, fileFilter }).single('image'))
+app.use(multer({ storage, fileFilter }).single('image')) // sesuai nama skemanya
 
 // access image
 app.use('/images', express.static('images'))

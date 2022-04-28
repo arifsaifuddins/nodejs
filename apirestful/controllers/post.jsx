@@ -158,7 +158,7 @@ exports.deleteBlog = (req, res, next) => {
   }).catch(err => next(err))
 }
 
-removeImageFile = (filePath) => {
+const removeImageFile = (filePath) => {
   const file = path.join(__dirname + '/../' + filePath)
 
   fs.unlink(file, res => console.log('success', res))
