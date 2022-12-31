@@ -1,0 +1,28 @@
+{
+  "name": "node_api",
+  "version": "1.0.0",
+  "description": "restapi",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon"
+  },
+  "author": "Arief Saifuddien",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.8",
+    "express": "^4.17.3",
+    "express-ejs-layouts": "^2.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.0",
+    "multer": "^1.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
